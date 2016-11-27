@@ -1,0 +1,19 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+    <title>Hello AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="../../js/hello.js"></script>
+</head>
+
+<body>
+<div ng-controller="Hello">
+
+    <div ng-repeat="greeting in greetings">
+    <p>ID is {{greeting.id}}</p>
+    <p>Nume is {{greeting.nume}}</p>
+    <p>Functie is {{greeting.functie}}</p>
+        </div>
+</div>
+</body>
+</html>
