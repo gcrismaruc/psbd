@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Primarie Test Project</title>
-    <script src="../Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../Scripts/angular.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/angular.min.js" type="text/javascript"></script>
+    <!-- Angular Material -->
+    <script src="../../Scripts/angular-animate.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/angular-aria.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/angular-messages.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/angular-material.min.js" type="text/javascript"></script>
 
-    <script src="../Scripts/Controllers/BookingController.js" type="text/javascript"></script>
+    <script src="../../Scripts/Controllers/BookingController.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="../Content/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../Content/site.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/site.css">
 </head>
 <body>
     <div class="container" ng-app="bookingModule">
@@ -46,37 +52,32 @@
             </div>
             <div class="col-md-9 content" ng-controller="BookingController">
                 <h1>Booking</h1>
-                <div class="col-md-3">
-                    Nume:
-                </div>
-                <div class="col-md-9">
-                    <input type="text" placeholder="Nume" data-ng-model="rezervare.nume" />
-                </div>
-                <div class="col-md-3">
-                    Prenume:
-                </div>
-                <div class="col-md-9">
-                    <input type="text" placeholder="Prenume" data-ng-model="rezervare.prenume" />
-                </div>
-                <div class="col-md-3">
-                    Cod numeric personal:
-                </div>
-                <div class="col-md-9">
-                    <input type="text" placeholder="CNP" data-ng-model="rezervare.cnp" />
-                </div>
-                <div class="col-md-3">
-                    Numar loc:
-                </div>
-                <div class="col-md-9">
-                    <input type="text" placeholder="Numar loc" data-ng-model="rezervare.nrLoc" />
-                </div>
-                <div class="col-md-3">
-                    ID Cursa:
-                </div>
-                <div class="col-md-9">
-                    <input type="text" placeholder="ID Cursa" data-ng-model="rezervare.idCursa" />
-                </div>
-                <button type="button" class="btn btn-success" ng-click="submitBooking()">SUBMIT</button>
+                <div class="col-md-12" ng-show="firstStep()">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <h4>Selectati cursa: </h4>
+                        </div>
+                        <div class="col-md-9">
+                            <select name="flightSelect" ng-model="flightList">
+                                <option ng-repeat="flight in flightList" value="{{flight.id_avion}}">{{flight.oras_plecare}} - {{flight.oras_sosire}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <h4>Selectati data: </h4>
+                        </div>
+                        <div class="col-md-9">
+                            <md-datepicker ng-model="dataPlecare" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3"><input type="checkbox" name="dusIntors" value="dusIntors"> Dus-Intors<br></div>                        
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3"><button class="btn btn-default" ng-click="goToStepTwo()">Cauta</button></div>
+                    </div>
+                 </div>
             </div>
         </div>
     </div>

@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Primarie Test Project</title>
-    <script src="../Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../Scripts/angular.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/angular.min.js" type="text/javascript"></script>
 
-    <script src="../Scripts/Controllers/IndexController.js" type="text/javascript"></script>
+    <script src="../../Scripts/Controllers/IndexController.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="../Content/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../Content/site.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/site.css">
 </head>
 <body>
     <div class="container" ng-app="indexModule">
@@ -47,17 +47,17 @@
             <div class="col-md-9 content" ng-controller="IndexController">
                 <h1>Home</h1>                
                 <div ng-repeat="flight in flightList">
-                    <div class="col-md-9 cursa">
+                    <div class="col-md-12 cursa">
                         <div class="col-md-3 pozaCursa">
                             Poza
                         </div>
-                        <div class="col-md-6 detaliiCursa">
+                        <div class="col-md-9 detaliiCursa">
                             Cursa zilnica : {{flight.oras_plecare}} - {{flight.oras_sosire}}
                             <br />
                             Pret : {{flight.pret}} €
                             <br />
                             Numar locuri: {{flight.nr_loc_ec}} economice, {{flight.nr_loc_bs}} business
-                            <button type="button" class="btn btn-success bookingBtn" ng-click="setDefaultFlight(flight.id_avion)">Rezerva bilet(e)</button>
+                            <a href="Booking.html" class="btn btn-success bookingBtn">Rezerva bilet(e)</a>
                         </div>
                     </div>
                 </div>
