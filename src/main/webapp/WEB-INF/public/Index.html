@@ -52,12 +52,12 @@
                             Poza
                         </div>
                         <div class="col-md-6 detaliiCursa">
-                            Cursa zilnica : {{flight.plecare}} - {{flight.sosire}} 
+                            Cursa zilnica : {{flight.oras_plecare}} - {{flight.oras_sosire}}
                             <br />
                             Pret : {{flight.pret}} €
                             <br />
-                            Numar locuri: {{flight.nrLocEc}} economice, {{flight.nrLocBus}} business
-                            <button type="button" class="btn btn-success bookingBtn" ng-click="setDefaultFlight(flight.avionId)">Rezerva bilet(e)</button>
+                            Numar locuri: {{flight.nr_loc_ec}} economice, {{flight.nr_loc_bs}} business
+                            <button type="button" class="btn btn-success bookingBtn" ng-click="setDefaultFlight(flight.id_avion)">Rezerva bilet(e)</button>
                         </div>
                     </div>
                 </div>
