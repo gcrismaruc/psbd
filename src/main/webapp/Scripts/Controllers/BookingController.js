@@ -54,8 +54,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
     $scope.goToStepTwo = function () {
         $http({
             method: 'GET',
-            url: '/booking',
-            data: { avionID : $scope.selectedFlight,
+            url: '/availableFlight',
+            params: { avionID : $scope.selectedFlight,
                 dataPlecare: $scope.dataPlecare
             }
         });
