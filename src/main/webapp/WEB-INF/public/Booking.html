@@ -77,8 +77,114 @@
                     <div class="col-md-12">
                         <div class="col-md-3"><button class="btn btn-default" ng-click="goToStepTwo()">Cauta</button></div>
                     </div>
-                    {{selectedFlight}}
                  </div>
+                <div class="col-md-12" ng-show="secondStep()">
+                    <div class="col-md-12">
+                        <h3>Detalii despre cursa: </h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">Plecare: </div>
+                        <div class="col-md-9">{{detaliiCursa.oras_plecare}}</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">Sosire: </div>
+                        <div class="col-md-9">{{detaliiCursa.oras_sosire}}</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">Pret: </div>
+                        <div class="col-md-9">{{detaliiCursa.pret}}</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">Numar de locuri: </div>
+                        <div class="col-md-9">{{detaliiCursa.nr_loc_ec + detaliiCursa.nr_loc_bs}} ({{detaliiCursa.nr_loc_ec}} economic, {{detaliiCursa.nr_loc_bs}} business)</div>
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Detalii rezervare: </h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Nume: 
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="rezervare.nume" placeholder="Nume">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Prenume:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="rezervare.prenume" placeholder="Prenume">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            CNP:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="number" ng-model="rezervare.cnp" placeholder="Cod numeric personal">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Numal de locuri:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="number" ng-model="rezervare.nrLoc" placeholder="Numar de locuri">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-default" ng-click="setBookingDetails()">Detalii bilet(e)</button>
+                    </div>
+                    <div ng-show="ticketDetails()">
+                        <div class="col-md-12" ng-repeat="bilet in bilete track by $index">
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    Nume:
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="bilete[$index].nume" placeholder="Nume" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    Prenume:
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="bilete[$index].prenume" placeholder="Prenume" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    CNP:
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="number" ng-model="bilete[$index].cnp" placeholder="Cod numeric personal" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    Numar loc:
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" ng-model="bilete[$index].numarLoc" placeholder="Numar loc" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    Reducere copii:
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="checkbox" ng-model="bilete[$index].reducere" />
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-succes" ng-click="saveBooking()">SUBMIT</button> 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

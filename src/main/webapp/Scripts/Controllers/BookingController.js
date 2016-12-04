@@ -5,11 +5,12 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         nume: '',
         prenume: '',
         cnp: null,
-        idCursa: null,
-        nrLoc: null
+        //idCursa: null,
+        nrLoc: 1
     };
 
     $scope.step = 1;
+    $scope.detaliiBilete = false;
 
     $scope.selectedFlight = null;
 
@@ -22,6 +23,16 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
 
     $scope.maxDate = new Date();
     $scope.maxDate.setFullYear(2017, 0, 1);
+
+    $scope.detaliiCursa = {
+        oras_plecare: 'asa',
+        oras_sosire: 'dsadsa',
+        pret: 20,
+        nr_loc_ec: 15,
+        nr_loc_bs: 5
+    };
+
+    $scope.bilete = [];
 
     $http({
         method: 'GET',
@@ -60,5 +71,18 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
             }
         });
         $scope.step = 2;
+    }
+
+    $scope.setBookingDetails = function () {
+        $scope.detaliiBilete = true;
+        $scope.bilete = new Array($scope.rezervare.nrLoc);
+    }
+
+    $scope.ticketDetails = function () {
+        return $scope.detaliiBilete;
+    }
+
+    $scope.saveBooking = function () {
+        console.log($scope.bilete);
     }
 }]);
