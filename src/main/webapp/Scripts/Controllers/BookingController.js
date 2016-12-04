@@ -11,6 +11,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
 
     $scope.step = 1;
 
+    $scope.selectedFlight = null;
+
     $scope.flightList = [];
 
     $scope.dataPlecare = new Date();
@@ -50,6 +52,13 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
 
 
     $scope.goToStepTwo = function () {
+        $http({
+            method: 'GET',
+            url: '/booking',
+            data: { avionID : $scope.selectedFlight,
+                dataPlecare: $scope.dataPlecare
+            }
+        });
         $scope.step = 2;
     }
 }]);

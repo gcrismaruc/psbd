@@ -14,5 +14,5 @@ indexModule.controller('IndexController', ['$scope', '$http', function ($scope, 
         alert("A aparut o eroare!");
     });
 
-    
+
 }]);
