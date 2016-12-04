@@ -139,6 +139,9 @@
                     <div ng-show="ticketDetails()">
                         <div class="col-md-12" ng-repeat="bilet in bilete track by $index">
                             <div class="col-md-12">
+                                <strong>{{$index + 1}}.</strong>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="col-md-3">
                                     Nume:
                                 </div>
@@ -178,6 +181,9 @@
                                     <input type="checkbox" ng-model="bilete[$index].reducere" />
                                 </div>
                             </div>
+                            <br />
+                            <br />
+                            <br />
                             <hr />
                         </div>
                         <div class="col-md-12">
