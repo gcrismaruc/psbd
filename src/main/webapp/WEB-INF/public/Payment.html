@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../Content/site.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" ng-app="paymentModule">
         <div class="col-md-12">
             <div class="col-md-3 logo">
                 Logo
@@ -42,8 +42,52 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-9 content">
+            <div class="col-md-9 content" ng-controller="PaymentController">
                 <h1>Payment</h1>
+                <div class="col-md-12" ng-show="firstStep()">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Nume:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="bookingFilter.nume">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Prenume:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="bookingFilter.prenume">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            CNP:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="number" ng-model="bookingFilter.cnp">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-succes" ng-click="getBookingList()">Cauta</button>
+                    </div>
+                </div>
+                <div class="col-md-12" ng-show="secondStep()">
+                    <div class="col-md-12" ng-repeat="booking in bookingList">
+                        <div class="col-md-12">
+                            <div class="col-md-9">
+                                {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-warning" ng-click="cancelBooking(booking.id)">Plateste</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-default" ng-click="back()">Inapoi la filtrul de cautare</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
