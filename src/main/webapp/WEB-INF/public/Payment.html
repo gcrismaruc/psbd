@@ -6,6 +6,8 @@
     <script src="../Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="../Scripts/angular.min.js" type="text/javascript"></script>
 
+    <script src="../Scripts/Controllers/PaymentController.js" type="text/javascript"></script>
+
     <link rel="stylesheet" type="text/css" href="../Content/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../Content/site.css">
 </head>
@@ -80,7 +82,7 @@
                                 {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-warning" ng-click="cancelBooking(booking.id)">Plateste</button>
+                                <button type="button" class="btn btn-warning" ng-click="doPay(booking.id)">Plateste</button>
                             </div>
                         </div>
                     </div>
