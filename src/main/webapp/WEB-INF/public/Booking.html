@@ -21,32 +21,30 @@
     <div class="container" ng-app="bookingModule">
         <div class="col-md-12">
             <div class="col-md-3 logo">
-                Logo
             </div>
             <div class="col-md-9 banner">
-                This is the banner
             </div>
         </div>
         <div class="col-md-12">
             <div class="col-md-3 sideBar">
-                <div class="col-md-3 sideBarBtn">
-                    <a href="Index.html" class="btn btn-default">
-                        <span class="glyphicon glyphicon-align-justify">Home</span>
+                <div class="col-md-3 sideBarBtn home">
+                    <a href="Index.html" class="btn btn-default customBtn">
+                        <span class="glyphicon glyphicon-home">&nbsp;Home</span>
                     </a>
                 </div>
-                <div class="col-md-3 sideBarBtn">
-                    <a href="Booking.html" class="btn btn-default">
-                        <span class="glyphicon glyphicon-align-justify">Book ticket</span>
+                <div class="col-md-3 sideBarBtn booking">
+                    <a href="Booking.html" class="btn btn-default customBtn">
+                        <span class="glyphicon glyphicon-plane">&nbsp;Book ticket</span>
                     </a>
                 </div>
-                <div class="col-md-3 sideBarBtn">
-                    <a href="Payment.html" class="btn btn-default">
-                        <span class="glyphicon glyphicon-align-justify">Payment</span>
+                <div class="col-md-3 sideBarBtn payment">
+                    <a href="Payment.html" class="btn btn-default customBtn">
+                        <span class="glyphicon glyphicon-euro">&nbsp;Payment</span>
                     </a>
                 </div>
-                <div class="col-md-3 sideBarBtn">
-                    <a href="CancelBooking.html" class="btn btn-default">
-                        <span class="glyphicon glyphicon-align-justify">Cancel ticket</span>
+                <div class="col-md-3 sideBarBtn cancel">
+                    <a href="CancelBooking.html" class="btn btn-default customBtn">
+                        <span class="glyphicon glyphicon-trash">&nbsp;Cancel ticket</span>
                     </a>
                 </div>
             </div>
@@ -72,12 +70,12 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-3"><input type="checkbox" name="dusIntors" value="dusIntors"> Dus-Intors<br></div>                        
+                        <div class="col-md-3"><input type="checkbox" name="dusIntors" value="dusIntors"> Dus-Intors<br></div>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-3"><button class="btn btn-default" ng-click="goToStepTwo()">Cauta</button></div>
                     </div>
-                 </div>
+                </div>
                 <div class="col-md-12" ng-show="secondStep()">
                     <div class="col-md-12">
                         <h3>Detalii despre cursa: </h3>
@@ -103,7 +101,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-3">
-                            Nume: 
+                            Nume:
                         </div>
                         <div class="col-md-9">
                             <input type="text" ng-model="rezervare.nume" placeholder="Nume">
@@ -187,7 +185,7 @@
                             <hr />
                         </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-succes" ng-click="saveBooking()">SUBMIT</button> 
+                            <button type="button" class="btn btn-succes" ng-click="saveBooking()">SUBMIT</button>
                         </div>
                     </div>
                 </div>
