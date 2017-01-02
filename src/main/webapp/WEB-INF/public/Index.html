@@ -43,11 +43,11 @@
                 </div>
             </div>
             <div class="col-md-9 content" ng-controller="IndexController">
-                <h1 class="contentHeader">Home</h1>                
+                <h1 class="contentHeader">Home</h1>               
                 <div ng-repeat="flight in flightList">
                     <div class="col-md-12 cursa">
                         <div class="col-md-3 pozaCursa">
-                            Poza
+                            <img ng-src="../../Content/Img/{{flight.oras_plecare}}.jpg" width="140" height="140"/>
                         </div>
                         <div class="col-md-9 detaliiCursa">
                             Cursa zilnica : {{flight.oras_plecare}} - {{flight.oras_sosire}}

@@ -68,7 +68,8 @@
 }
 
 .cursa{
-    box-shadow: 5px 5px 5px #1d73be;
+    box-shadow: 1px 1px 1px #888888;
+    margin-bottom: 5px;
 }
 
 .pozaCursa{

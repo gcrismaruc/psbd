@@ -4,6 +4,8 @@ indexModule.controller('IndexController', ['$scope', '$http', function ($scope, 
 
     $scope.flightList = [];
 
+    $scope.imgPath = 'Iasi';
+
     $http({
         method: 'GET',
         url: '/Curse'
