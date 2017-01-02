@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-3 sideBarBtn booking">
                     <a href="Booking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-plane">&nbsp;Book ticket</span>
+                        <span class="glyphicon glyphicon-plane">&nbsp;Reservation</span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn payment">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="col-md-9 content" ng-controller="IndexController">
-                <h1>Home</h1>                
+                <h1 class="contentHeader">Home</h1>                
                 <div ng-repeat="flight in flightList">
                     <div class="col-md-12 cursa">
                         <div class="col-md-3 pozaCursa">
@@ -55,7 +55,7 @@
                             Pret : {{flight.pret}} €
                             <br />
                             Numar locuri: {{flight.nr_loc_ec}} economice, {{flight.nr_loc_bs}} business
-                            <a href="Booking.html" class="btn btn-success bookingBtn">Rezerva bilet(e)</a>
+                            <a href="Booking.html" class="btn btn-success bookingBtn"><span class="glyphicon glyphicon-check">Rezerva bilet(e)</span></a>
                         </div>
                     </div>
                 </div>

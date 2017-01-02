@@ -38,7 +38,9 @@
 
 .content{
     min-height: 400px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    background: #bfbdbe;
+    color: #1d73be;
 }
 
 .customBtn {
@@ -52,5 +54,27 @@
 
 .customBtn:hover{
     background: #0d96dd;
+    color: black;
+}
+
+.searchBtn{
+    background: #1d73be;
+    color: white;
+}
+
+.searchBtn:hover{
+    background: #1d73be;
+    color: black;
+}
+
+.cursa{
+    box-shadow: 5px 5px 5px #1d73be;
+}
+
+.pozaCursa{
+    border-right: 1px solid #1d73be;
+}
+
+.bookingBtn:hover{
     color: black;
 }

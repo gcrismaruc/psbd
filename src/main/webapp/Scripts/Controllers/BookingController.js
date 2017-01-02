@@ -19,11 +19,17 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
 
     $scope.dataPlecare = new Date();
 
-    $scope.minDate = new Date();
-    $scope.minDate.setFullYear(2016, 0, 1);
+    $scope.myDate = new Date();
 
-    $scope.maxDate = new Date();
-    $scope.maxDate.setFullYear(2017, 0, 1);
+    $scope.minDate = new Date(
+        $scope.myDate.getFullYear(),
+        $scope.myDate.getMonth(),
+        $scope.myDate.getDate());
+
+    $scope.maxDate = new Date(
+        $scope.myDate.getFullYear() + 1,
+        $scope.myDate.getMonth(),
+        $scope.myDate.getDate());
 
     $scope.detaliiCursa = {
         oras_plecare: 'asa',

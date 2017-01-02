@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-3 sideBarBtn booking">
                     <a href="Booking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-plane">&nbsp;Book ticket</span>
+                        <span class="glyphicon glyphicon-plane">&nbsp;Reservation</span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn payment">
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col-md-9 content" ng-controller="BookingController">
-                <h1>Booking</h1>
+                <h1 class="contentHeader">Reservation</h1>
                 <div class="col-md-12" ng-show="firstStep()">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -73,7 +73,7 @@
                         <div class="col-md-3"><input type="checkbox" name="dusIntors" value="dusIntors"> Dus-Intors<br></div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-3"><button class="btn btn-default" ng-click="goToStepTwo()">Cauta</button></div>
+                        <div class="col-md-3"><button class="btn btn-default searchBtn" ng-click="goToStepTwo()"><span class="glyphicon glyphicon-search">Cauta</span></button></div>
                     </div>
                 </div>
                 <div class="col-md-12" ng-show="secondStep()">

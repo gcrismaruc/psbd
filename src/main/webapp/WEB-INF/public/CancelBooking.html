@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-3 sideBarBtn booking">
                     <a href="Booking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-plane">&nbsp;Book ticket</span>
+                        <span class="glyphicon glyphicon-plane">&nbsp;Reservation</span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn payment">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-9 content" ng-controller="CancelBookingController">
-                <h1>Cancel booking</h1>
+                <h1 class="contentHeader">Cancel booking</h1>
                 <div class="col-md-12" ng-show="firstStep()">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-succes" ng-click="getBookingList()">Cauta</button>
+                        <button type="button" class="btn btn-default searchBtn" ng-click="getBookingList()"><span class="glyphicon glyphicon-search">Cauta</span></button>
                     </div>
                 </div>
                 <div class="col-md-12" ng-show="secondStep()">
