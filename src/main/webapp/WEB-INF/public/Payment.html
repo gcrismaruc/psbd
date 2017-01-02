@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../Content/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../Content/site.css">
+
 </head>
 <body>
     <div class="container" ng-app="paymentModule">
@@ -80,7 +81,7 @@
                                 {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-warning" ng-click="cancelBooking(booking.id)">Plateste</button>
+                                <button type="button" class="btn btn-warning" ng-click="doPay(booking.id)">Plateste</button>
                             </div>
                         </div>
                     </div>

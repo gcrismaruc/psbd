@@ -1,6 +1,6 @@
 var cancelBookingModule = angular.module('cancelBookingModule', []);
 
-cancelBookingModule.controller('CancelBookingController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
+cancelBookingModule.controller('CancelBookingController', ['$scope', '$http',  function ($scope, $http) {
 
     $scope.bookingList = [];
 
@@ -20,16 +20,18 @@ cancelBookingModule.controller('CancelBookingController', ['$scope', '$http', '$
         return $scope.step == 2;
     }
 
-    $state.back = function () {
-        $state.reload();
+    $scope.back = function () {
+        window.location.reload();
     }
 
     $scope.getBookingList = function () {
         $http({
             method: 'GET',
-            url: '/Curse',
+            url: '/getpaid',
             params: {
-                filter: $scope.bookingFilter
+                cnp : $scope.bookingFilter.cnp,
+                nume : $scope.bookingFilter.nume,
+                prenume : $scope.bookingFilter.prenume
             }
         }).then(function setList(response) {
             $scope.bookingList = response.data;
@@ -43,10 +45,14 @@ cancelBookingModule.controller('CancelBookingController', ['$scope', '$http', '$
     $scope.cancelBooking = function (id) {
         $http({
             method: 'POST',
-            url: '/booking',
-            data: { rezervareID: id }
+            url: '/cancelbooking',
+            params: {
+                rezervareID: id
+            }
+        }).then(function mesajConfirmare(response) {
+            alert("Rezervarea a fost stearsa cu succes!" + response.statusText);
         });
-        $state.reload();
+        window.location.reload();
     }
 
 

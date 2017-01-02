@@ -1,6 +1,6 @@
 var paymentModule = angular.module('paymentModule', []);
 
-paymentModule.controller('PaymentController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
+paymentModule.controller('PaymentController', ['$scope', '$http', function ($scope, $http) {
 
     $scope.bookingList = [];
 
@@ -20,16 +20,18 @@ paymentModule.controller('PaymentController', ['$scope', '$http', '$state', func
         return $scope.step == 2;
     }
 
-    $state.back = function () {
-        $state.reload();
+    $scope.back = function () {
+        window.location.reload();
     }
 
     $scope.getBookingList = function () {
         $http({
             method: 'GET',
-            url: '/Curse',
+            url: '/getpaid',
             params: {
-                filter: $scope.bookingFilter
+                nume: $scope.bookingFilter.nume,
+                prenume: $scope.bookingFilter.prenume,
+                cnp: $scope.bookingFilter.cnp
             }
         }).then(function setList(response) {
             $scope.bookingList = response.data;
@@ -40,13 +42,15 @@ paymentModule.controller('PaymentController', ['$scope', '$http', '$state', func
         });
     }
 
-    $scope.cancelBooking = function (id) {
+    $scope.doPay = function (id) {
         $http({
             method: 'POST',
-            url: '/booking',
-            data: { rezervareID: id }
+            url: '/dopay',
+            params: { rezervareID: id }
+        }).then(function mesajConfirmare(response){
+            alert("Plata a fost efectuata cu succes!");
         });
-        $state.reload();
+        window.location.reload();
     }
 
 

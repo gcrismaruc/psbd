@@ -6,7 +6,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         prenume: '',
         cnp: null,
         //idCursa: null,
-        nrLoc: 1
+        nrLoc: 1,
+        tickets: []
     };
 
     $scope.step = 1;
@@ -69,6 +70,11 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
             params: { avionID : $scope.selectedFlight,
                 dataPlecare: $scope.dataPlecare
             }
+        }).then(function setFlightDetails(response) {
+            $scope.detaliiCursa = response.data[0];
+            console.log(response);
+        }, function errorCB(response) {
+            alert("A aparut o eroare!");
         });
         $scope.step = 2;
     }
@@ -84,5 +90,18 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
 
     $scope.saveBooking = function () {
         console.log($scope.bilete);
+        $scope.rezervare.tickets.push($scope.bilete);
+        console.log($scope.rezervare);
+        $http({
+            method: 'POST',
+            url: '/saveBooking',
+            params: { rezervare: $scope.rezervare }
+        }).then(function mesajConfirmare(response) {
+
+            alert("Rezervarea a fost salvata cu succes!");
+            window.location.reload();
+
+        });
+
     }
 }]);
