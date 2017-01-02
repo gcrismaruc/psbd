@@ -81,12 +81,12 @@
                                 {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-warning" ng-click="doPay(booking.id)">Plateste</button>
+                                <button type="button" class="btn btn-warning payBtn" ng-click="doPay(booking.id)"><span class="glyphicon glyphicon-exclamation-sign">Plateste</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-default" ng-click="back()">Inapoi la filtrul de cautare</button>
+                        <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>
                     </div>
                 </div>
             </div>

@@ -78,3 +78,21 @@
 .bookingBtn:hover{
     color: black;
 }
+
+.backBtn{
+    background: white;
+    color: #1d73be;
+}
+
+.backBtn:hover{
+    background: white;
+    color: black;
+}
+
+.cancelBtn:hover{
+    color: black;
+}
+
+.payBtn:hover{
+    color:black;
+}

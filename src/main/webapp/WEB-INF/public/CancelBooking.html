@@ -81,12 +81,12 @@
                                 {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-danger" ng-click="cancelBooking(booking.id)">Anuleaza</button>
+                                <button type="button" class="btn btn-danger cancelBtn" ng-click="cancelBooking(booking.id)"><span class="glyphicon glyphicon-remove">Anuleaza</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-default" ng-click="back()">Inapoi la filtrul de cautare</button>
+                        <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>
                     </div>
                 </div>
             </div>
