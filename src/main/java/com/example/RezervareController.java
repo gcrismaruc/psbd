@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -99,21 +100,21 @@ public class RezervareController {
             JSONParser parser = new JSONParser();
             JSONObject json = (JSONObject) parser.parse(request.getParameter("rezervare"));
 
-
             System.out.println(json);
 
+            JSONArray tickets = (JSONArray) json.get("tickets");
             String numeRezervare = json.getAsString("nume");
             String prenumeRezervare = json.getAsString("prenume");
             int cnpRezervare = (int)json.getAsNumber("cnp");
             int numarLocuri = (int)json.getAsNumber("nrLoc");
 
-            addRezervare(numeRezervare, prenumeRezervare, cnpRezervare, numarLocuri, response);
+            addRezervare(tickets, numeRezervare, prenumeRezervare, cnpRezervare, numarLocuri, response);
 
         }
 
 
 
-        private void addRezervare(String nume, String prenume, int cnp, int nrLocuri, HttpServletResponse response) throws NoSuchAlgorithmException {
+        private void addRezervare(JSONArray tickets, String nume, String prenume, int cnp, int nrLocuri, HttpServletResponse response) throws NoSuchAlgorithmException {
 
             Connection connection = DataBaseConnector.getInstance().getConnection();
             CallableStatement statement = null;
@@ -122,8 +123,8 @@ public class RezervareController {
             try {
                 String sql = "{call addrezervare (?, ?, ?, ?, ?, ?, ?)}";
                 statement = connection.prepareCall(sql);
-
-                statement.setInt(1,  (int)(System.currentTimeMillis() % 100000));
+                int idRezervare = (int)(System.currentTimeMillis() % 100000);
+                statement.setInt(1,  idRezervare);
 
                 statement.setString(2, nume);
                 statement.setString(3, prenume);
@@ -139,6 +140,11 @@ public class RezervareController {
                 response.setStatus(HttpServletResponse.SC_OK);
 
                 statement.close();
+
+                //adaug si biletele...
+                addBilete(tickets, idRezervare, response);
+
+
             } catch (SQLException se) {
                 se.printStackTrace();
             } catch (Exception e) {
@@ -153,4 +159,56 @@ public class RezervareController {
                 }
             }
         }
+
+
+        private void addBilete(JSONArray tickets, int rezervareId, HttpServletResponse response) {
+            
+            JSONArray jsonArray = (JSONArray) (tickets.get(0));
+
+            for( int i = 0; i < tickets.size(); i++) {
+                JSONObject object = ((JSONObject)jsonArray.get(i));
+                String nume = object.getAsString("nume");
+                String prenume = object.getAsString("prenume");
+                int cnp = (int)object.getAsNumber("cnp");
+                long loc = (long)object.getAsNumber("numarLoc");
+                int reducere = ((boolean)object.get("reducere"))?1:0;
+                String tip = object.getAsString("tip");
+
+                Connection connection = DataBaseConnector.getInstance().getConnection();
+                CallableStatement statement = null;
+
+
+                try {
+                    String sql = "{call add_tickets (?, ?, ?, ?, ?, ?, ?, ?)}";
+                    statement = connection.prepareCall(sql);
+
+                    statement.setInt(1,  (int)(System.currentTimeMillis() % 100000));
+                    statement.setString(2, nume);
+                    statement.setString(3, prenume);
+                    statement.setInt(4, cnp);
+                    statement.setLong(5, loc);
+                    statement.setInt(6, reducere);
+                    statement.setInt(7, rezervareId);
+                    statement.setString(8, "E");
+
+                    statement.execute();
+                    response.setStatus(HttpServletResponse.SC_OK);
+
+                    statement.close();
+                } catch (SQLException se) {
+                    se.printStackTrace();
+                } catch (Exception e) {
+                    // Handle errors for Class.forName
+                    e.printStackTrace();
+                } finally {
+                    // finally block used to close resources
+                    try {
+                        if (statement != null)
+                            statement.close();
+                    } catch (SQLException se2) {
+                    }
+                }
+            }
+        }
+
 }
