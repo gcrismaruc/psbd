@@ -6,14 +6,14 @@
     <script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="../../Scripts/angular.min.js" type="text/javascript"></script>
 
-    <script src="../../Scripts/Controllers/PaymentController.js" type="text/javascript"></script>
+    <script src="../../Scripts/Controllers/UpdateController.js" type="text/javascript"></script>
 
     <link rel="stylesheet" type="text/css" href="../../Content/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../Content/site.css">
 
 </head>
 <body>
-    <div class="container" ng-app="paymentModule">
+    <div class="container" ng-app="updateModule">
         <div class="col-md-12">
             <div class="col-md-3 logo">
             </div>
@@ -48,8 +48,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-9 content" ng-controller="PaymentController">
-                <h1 class="contentHeader">Payment</h1>
+            <div class="col-md-9 content" ng-controller="UpdateController">
+                <h1 class="contentHeader">Update</h1>
                 <div class="col-md-12" ng-show="firstStep()">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -86,9 +86,49 @@
                                 {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-warning payBtn" ng-click="doPay(booking.id)"><span class="glyphicon glyphicon-exclamation-sign">Plateste</span></button>
+                                <button type="button" class="btn btn-warning payBtn" ng-click="edit(booking.id)"><span class="glyphicon glyphicon-edit">Editeaza</span></button>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>
+                    </div>
+                </div>
+                <div class="col-md-12" ng-show="thirdStep()">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Nume:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="reservationDetails.nume" value="reservationDetails.nume" placeholder="Nume">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Prenume:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="reservationDetails.prenume" value="reservationDetails.prenume" placeholder="Prenume">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            CNP:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="reservationDetails.cnp" value="reservationDetails.cnp" placeholder="CNP">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Loc:
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="reservationDetails.loc" value="reservationDetails.loc" placeholder="Loc">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-succes payBtn" ng-click="submit()"><span class="glyphicon glyphicon-ok">Salveaza</span></button>
                     </div>
                     <div class="col-md-12">
                         <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>

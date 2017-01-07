@@ -5,6 +5,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         nume: '',
         prenume: '',
         cnp: null,
+        dataPlecare: null,
+        orasPlecare: '',
         //idCursa: null,
         nrLoc: 1,
         tickets: []
@@ -97,6 +99,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
     $scope.saveBooking = function () {
         console.log($scope.bilete);
         $scope.rezervare.tickets.push($scope.bilete);
+        $scope.rezervare.dataPlecare = $scope.dataPlecare;
+        $scope.rezervare.orasPlecare = $scope.detaliiCursa.oras_plecare;
         console.log($scope.rezervare);
         $http({
             method: 'POST',
