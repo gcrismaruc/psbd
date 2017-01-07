@@ -6,6 +6,7 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         prenume: '',
         cnp: null,
         dataPlecare: null,
+        dataRetur: null,
         orasPlecare: '',
         //idCursa: null,
         nrLoc: 1,
@@ -13,6 +14,7 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
     };
 
     $scope.step = 1;
+    $scope.retur = false;
     $scope.detaliiBilete = false;
 
     $scope.selectedFlight = null;
@@ -22,6 +24,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
     $scope.dataPlecare = new Date();
 
     $scope.myDate = new Date();
+
+    $scope.dataRetur = new Date();
 
     $scope.minDate = new Date(
         $scope.myDate.getFullYear(),
@@ -70,6 +74,9 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         return $scope.step == 2;
     }
 
+    $scope.dusIntors = function () {
+        return $scope.retur;
+    }
 
     $scope.goToStepTwo = function () {
         $http({
@@ -100,6 +107,7 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         console.log($scope.bilete);
         $scope.rezervare.tickets.push($scope.bilete);
         $scope.rezervare.dataPlecare = $scope.dataPlecare;
+        $scope.rezervare.dataRetur = $scope.dataRetur;
         $scope.rezervare.orasPlecare = $scope.detaliiCursa.oras_plecare;
         console.log($scope.rezervare);
         $http({

@@ -101,3 +101,6 @@
 /*.glyphicon{
     font-family: Arial;
 }*/
+.menuText {
+    font-family: Arial !important;
+}

@@ -24,27 +24,27 @@
             <div class="col-md-3 sideBar">
                 <div class="col-md-3 sideBarBtn home">
                     <a href="Index.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-home">&nbsp;Home</span>
+                        <span class="glyphicon glyphicon-home"><span class="menuText">&nbsp;Home</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn booking">
                     <a href="Booking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-plane">&nbsp;Reservation</span>
+                        <span class="glyphicon glyphicon-plane"><span class="menuText">&nbsp;Reservation</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn payment">
                     <a href="Payment.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-euro">&nbsp;Payment</span>
+                        <span class="glyphicon glyphicon-euro"><span class="menuText">&nbsp;Payment</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn cancel">
                     <a href="CancelBooking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-trash">&nbsp;Cancel ticket</span>
+                        <span class="glyphicon glyphicon-trash"><span class="menuText">&nbsp;Cancel ticket</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn update">
                     <a href="Update.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-edit">&nbsp;Update booking</span>
+                        <span class="glyphicon glyphicon-edit"><span class="menuText">&nbsp;Update booking</span></span>
                     </a>
                 </div>
             </div>
@@ -95,6 +95,8 @@
                     </div>
                 </div>
                 <div class="col-md-12" ng-show="thirdStep()">
+                    <h2>Detalii rezervare</h2>
+                    <br />
                     <div class="col-md-12">
                         <div class="col-md-3">
                             Nume:
@@ -119,19 +121,42 @@
                             <input type="text" ng-model="reservationDetails.cnp" value="reservationDetails.cnp" placeholder="CNP">
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <h2>Detalii bilete</h2>
+                    <hr />
+                    <div class="col-md-12" ng-repeat="bilet in bilete track by $index">
+                        <div class="col-md-12">
+                            <strong>{{$index + 1}}.</strong>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                Nume:
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" ng-model="reservationDetails.tickets[$index].nume" value="reservationDetails.tickets[$index].nume" placeholder="Nume">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                Prenume:
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" ng-model="reservationDetails.tickets[$index].prenume" value="reservationDetails.tickets[$index].prenume" placeholder="Prenume">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                CNP:
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" ng-model="reservationDetails.tickets[$index].cnp" value="reservationDetails.tickets[$index].cnp" placeholder="CNP">
+                            </div>
+                        </div>
                         <div class="col-md-3">
-                            Loc:
+                            <button type="button" class="btn btn-succes payBtn" ng-click="submit()"><span class="glyphicon glyphicon-ok">Salveaza</span></button>
                         </div>
-                        <div class="col-md-9">
-                            <input type="text" ng-model="reservationDetails.loc" value="reservationDetails.loc" placeholder="Loc">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-succes payBtn" ng-click="submit()"><span class="glyphicon glyphicon-ok">Salveaza</span></button>
-                    </div>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>
                     </div>
                 </div>
             </div>

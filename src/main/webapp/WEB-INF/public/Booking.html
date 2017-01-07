@@ -29,27 +29,27 @@
             <div class="col-md-3 sideBar">
                 <div class="col-md-3 sideBarBtn home">
                     <a href="Index.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-home">&nbsp;Home</span>
+                        <span class="glyphicon glyphicon-home"><span class="menuText">&nbsp;Home</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn booking">
                     <a href="Booking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-plane">&nbsp;Reservation</span>
+                        <span class="glyphicon glyphicon-plane"><span class="menuText">&nbsp;Reservation</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn payment">
                     <a href="Payment.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-euro">&nbsp;Payment</span>
+                        <span class="glyphicon glyphicon-euro"><span class="menuText">&nbsp;Payment</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn cancel">
                     <a href="CancelBooking.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-trash">&nbsp;Cancel ticket</span>
+                        <span class="glyphicon glyphicon-trash"><span class="menuText">&nbsp;Cancel ticket</span></span>
                     </a>
                 </div>
                 <div class="col-md-3 sideBarBtn update">
                     <a href="Update.html" class="btn btn-default customBtn">
-                        <span class="glyphicon glyphicon-edit">&nbsp;Update booking</span>
+                        <span class="glyphicon glyphicon-edit"><span class="menuText">&nbsp;Update booking</span></span>
                     </a>
                 </div>
             </div>
@@ -75,7 +75,15 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-3"><input type="checkbox" name="dusIntors" value="dusIntors"> Dus-Intors<br></div>
+                        <div class="col-md-3"><input type="checkbox" name="dusIntors" value="dusIntors" ng-model="retur"> Dus-Intors<br></div>
+                    </div>
+                    <div class="col-md-12" ng-show="dusIntors()">
+                        <div class="col-md-3">
+                            <h4>Selectati data: </h4>
+                        </div>
+                        <div class="col-md-9">
+                            <md-datepicker ng-model="dataRetur" md-placeholder="Enter date" md-min-date="dataPlecare" md-max-date="maxDate"></md-datepicker>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-3"><button class="btn btn-default searchBtn" ng-click="goToStepTwo()"><span class="glyphicon glyphicon-search">Cauta</span></button></div>
