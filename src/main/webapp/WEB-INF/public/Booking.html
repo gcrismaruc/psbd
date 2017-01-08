@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Primarie Test Project</title>
+    <title>Proiect PSBD</title>
     <script src="../../Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="../../Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="../../Scripts/angular.min.js" type="text/javascript"></script>
@@ -178,10 +178,14 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-3">
-                                    Numar loc:
+                                    Loc:
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" ng-model="bilete[$index].numarLoc" placeholder="Numar loc" />
+                                    <!--<input type="text" ng-model="bilete[$index].numarLoc" placeholder="Numar loc" />-->
+                                    <select ng-model="bilete[$index].loc"
+                                            ng-options="item.loc+item.tip+item.pozitie for item in listaBilete">
+                                        <option value="">Selecteaza bilet</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-12">

@@ -104,3 +104,23 @@
 .menuText {
     font-family: Arial !important;
 }
+
+.goToBooking{
+    float:right;
+}
+
+.tooltipGlyph{
+    font-size: 1.5em;
+}
+
+.tooltip{
+    width: 100%;
+    display: inline-block;
+    color: red;
+}
+
+div.tooltip-inner{
+     width: 300px;
+     color: red;
+     word-wrap: break-word;
+}

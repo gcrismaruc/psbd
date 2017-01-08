@@ -2,6 +2,10 @@ var updateModule = angular.module('updateModule', []);
 
 updateModule.controller('UpdateController', ['$scope', '$http', function ($scope, $http) {
 
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
     $scope.bookingList = [];
 
     $scope.reservationDetails;
@@ -74,5 +78,4 @@ updateModule.controller('UpdateController', ['$scope', '$http', function ($scope
 
         });
     }
-
 }]);

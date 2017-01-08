@@ -47,6 +47,23 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
 
     $scope.bilete = [];
 
+
+    //Detalii locuri
+    $scope.listaBilete = []; //lista cu toate biletele
+    $scope.bilet = {
+        loc: null,
+        tip: null,
+        pozitie: null
+    };
+    //$scope.loc = []; //array in care se salveaza biletele selectate
+    $scope.locuriOcupate = []; //lista cu locuri rezervate, primita de la baza de date
+    $scope.bileteEc = 0; //numarul de bilete ec. al cursei
+    $scope.bileteBs = 0; //numarul de bilete bs. al cursei
+    $scope.numarBilete = 0; //numarul de bilete al rezervarii
+    var i = 0;
+    var j = 0;
+    //--------------
+
     $http({
         method: 'GET',
         url: '/Curse'
@@ -88,6 +105,7 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         }).then(function setFlightDetails(response) {
             $scope.detaliiCursa = response.data[0];
             console.log(response);
+            //
         }, function errorCB(response) {
             alert("A aparut o eroare!");
         });
@@ -97,6 +115,43 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
     $scope.setBookingDetails = function () {
         $scope.detaliiBilete = true;
         $scope.bilete = new Array($scope.rezervare.nrLoc);
+
+        $scope.bileteEc = $scope.detaliiCursa.nr_loc_ec;
+        $scope.bileteBs = $scope.detaliiCursa.nr_loc_bs;
+        $scope.numarBilete = $scope.rezervare.nrLoc;
+        //$scope.locuriOcupate = $scope.detaliiCursa.locuriOcupate;
+        $scope.locuriOcupate = [1, 2, 5, 6, 10, 25, 36, 62];
+        //$scope.loc = new Array($scope.rezervare.nrLoc);
+
+        for (i = 1; i <= $scope.bileteEc + $scope.bileteBs; i++) {
+            if (i <= $scope.bileteEc) {
+                $scope.bilet = { loc: i, tip: " E", pozitie: " Mijloc" };
+                if (i % 5 == 1) {
+                    $scope.bilet = { loc: i, tip: " E", pozitie: " Geam" };
+                }
+                if (i % 5 == 3 || i % 5 == 4) {
+                    $scope.bilet = { loc: i, tip: " E", pozitie: " Culoar" };
+                }
+                $scope.listaBilete.push($scope.bilet);
+            }
+            else {
+                $scope.bilet = { loc: i, tip: " B", pozitie: " Mijloc" };
+                if (i % 5 == 1) {
+                    $scope.bilet = { loc: i, tip: " B", pozitie: " Geam" };
+                }
+                if (i % 5 == 3 || i % 5 == 4) {
+                    $scope.bilet = { loc: i, tip: " B", pozitie: " Culoar" };
+                }
+                $scope.listaBilete.push($scope.bilet);
+            }
+        }
+
+        for (i = 0; i < $scope.listaBilete.length; i++) {
+            for (j = 0; j < $scope.locuriOcupate.length; j++) {
+                if ($scope.listaBilete[i].loc == $scope.locuriOcupate[j])
+                    $scope.listaBilete.splice(i, 1);
+            }
+        }
     }
 
     $scope.ticketDetails = function () {
