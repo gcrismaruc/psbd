@@ -7,7 +7,7 @@ updateModule.controller('UpdateController', ['$scope', '$http', function ($scope
     });
 
     $scope.bookingList = [];
-
+    $scope.selectedRezervareID = 2;
     $scope.reservationDetails;
 
     $scope.bookingFilter = {
@@ -37,7 +37,7 @@ updateModule.controller('UpdateController', ['$scope', '$http', function ($scope
     $scope.getBookingList = function () {
         $http({
             method: 'GET',
-            url: '/getpaid',
+            url: '/getbookingforcancel',
             params: {
                 nume: $scope.bookingFilter.nume,
                 prenume: $scope.bookingFilter.prenume,
@@ -53,11 +53,13 @@ updateModule.controller('UpdateController', ['$scope', '$http', function ($scope
     }
 
     $scope.edit = function (id) {
+        $scope.selectedRezervareID=id;
         $http({
             method: 'GET',
             url: '/editBooking',
             params: { rezervareID: id }
         }).then(function setDefaultValues(response) {
+            console.log(response.data);
             $scope.reservationDetails = response.data;
             $scope.step = 3;
         }, function errorCB(response) {
@@ -66,11 +68,14 @@ updateModule.controller('UpdateController', ['$scope', '$http', function ($scope
         //window.location.reload();
     }
 
-    $scope.submit = function () {
+    $scope.submit = function (id) {
+        console.log($scope.selectedRezervareID);
         $http({
             method: 'POST',
-            url: '/editBooking',
-            params: { rezervare: $scope.reservationDetails }
+            url: '/updateBooking',
+            params: {
+                rezervareID : $scope.selectedRezervareID,
+                rezervare: $scope.reservationDetails }
         }).then(function mesajConfirmare(response) {
 
             alert("Rezervarea a fost salvata cu succes!");

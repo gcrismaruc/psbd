@@ -130,8 +130,8 @@
                         </div>
                     </div>
                     <h2>Detalii bilete</h2>
-                    <hr />
-                    <div class="col-md-12" ng-repeat="bilet in bilete track by $index">
+                    <br />
+                    <div class="col-md-12" ng-repeat="bilet in reservationDetails.tickets track by $index">
                         <div class="col-md-12">
                             <strong>{{$index + 1}}.</strong>
                         </div>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-succes payBtn" ng-click="submit()"><span class="glyphicon glyphicon-ok">Salveaza</span></button>
+                            <button type="button" class="btn btn-succes payBtn" ng-click="submit(booking.id)"><span class="glyphicon glyphicon-ok">Salveaza</span></button>
                         </div>
                         <div class="col-md-12">
                             <button type="button" class="btn btn-default backBtn" ng-click="back()"><span class="glyphicon glyphicon-arrow-left">Inapoi la filtrul de cautare</span></button>

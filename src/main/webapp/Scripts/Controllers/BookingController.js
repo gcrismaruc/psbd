@@ -8,8 +8,10 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         dataPlecare: null,
         dataRetur: null,
         orasPlecare: '',
+        orasSosire : '',
         //idCursa: null,
         nrLoc: 1,
+
         tickets: []
     };
 
@@ -116,11 +118,11 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         $scope.detaliiBilete = true;
         $scope.bilete = new Array($scope.rezervare.nrLoc);
 
-        $scope.bileteEc = $scope.detaliiCursa.nr_loc_ec;
-        $scope.bileteBs = $scope.detaliiCursa.nr_loc_bs;
+        $scope.bileteEc = parseInt($scope.detaliiCursa.nr_loc_ec);
+        $scope.bileteBs = parseInt($scope.detaliiCursa.nr_loc_bs);
         $scope.numarBilete = $scope.rezervare.nrLoc;
-        //$scope.locuriOcupate = $scope.detaliiCursa.locuriOcupate;
-        $scope.locuriOcupate = [1, 2, 5, 6, 10, 25, 36, 62];
+        $scope.locuriOcupate = $scope.detaliiCursa.locuriOcupate;
+        // $scope.locuriOcupate = [1, 2, 5, 6, 10, 25, 36, 62];
         //$scope.loc = new Array($scope.rezervare.nrLoc);
 
         for (i = 1; i <= $scope.bileteEc + $scope.bileteBs; i++) {
@@ -164,6 +166,8 @@ bookingModule.controller('BookingController', ['$scope','$http', function ($scop
         $scope.rezervare.dataPlecare = $scope.dataPlecare;
         $scope.rezervare.dataRetur = $scope.dataRetur;
         $scope.rezervare.orasPlecare = $scope.detaliiCursa.oras_plecare;
+        $scope.rezervare.orasSosire = $scope.detaliiCursa.oras_sosire;
+
         console.log($scope.rezervare);
         $http({
             method: 'POST',

@@ -46,6 +46,12 @@ public class MainController {
         return new ModelAndView("CancelBooking");
     }
 
+    @RequestMapping(value = {"/Update", "/Update.html"})
+    public ModelAndView handleUpdateBooking(){
+
+        return new ModelAndView("Update");
+    }
+
     @RequestMapping(value = {"/Payment", "/Payment.html"})
     public ModelAndView handlePayment(){
 
