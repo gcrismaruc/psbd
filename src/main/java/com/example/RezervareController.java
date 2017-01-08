@@ -31,6 +31,8 @@ import java.util.List;
 @Controller
 public class RezervareController {
 
+    private static int PRET_BILET;
+
     @RequestMapping(value = {"/availableFlight"})
     public void handleCurse(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException, ParseException {
 
@@ -69,10 +71,14 @@ public class RezervareController {
                 json.put("id_avion", result.getString("avion_id"));
                 json.put("oras_plecare", result.getString("oras_plecare"));
                 json.put("oras_sosire", result.getString("oras_sosrire"));
-                json.put("pret", result.getString("pret"));
+
+                PRET_BILET = Integer.parseInt(result.getString("pret"));
+
+                json.put("pret", PRET_BILET);
                 json.put("nr_loc_ec", result.getString("nr_locuri_ec"));
                 json.put("nr_loc_bs", result.getString("nr_locuri_bs"));
                 json.put("locuriOcupate", getLocuriOcupate(cursaID));
+
 
                 // e ora sau partida?
                 // n-ai probleme momentan
@@ -80,13 +86,10 @@ public class RezervareController {
                 list.add(json);
             }
 
-
-
             outWriter.write(list.toJSONString());
             result.close();
 
             statement.close();
-
 
         } catch (SQLException se) {
             se.printStackTrace();
@@ -236,7 +239,7 @@ public class RezervareController {
             addRezervare(tickets, numeRezervare, prenumeRezervare, cnpRezervare, numarLocuri, cursaID, response);
 
             //add rezervare intors daca exista
-            if(dataRetur != null){
+            if(!dataRetur.equals(dateForDB)){
                 cursaID = getCursaId(orasSosire, orasPlecare, dataRetur);
                 addRezervare(tickets, numeRezervare, prenumeRezervare, cnpRezervare, numarLocuri, cursaID, response);
             }
@@ -285,7 +288,7 @@ public class RezervareController {
             CallableStatement statement = null;
 
             try {
-                String sql = "{call addrezervare (?, ?, ?, ?, ?, ?, ?)}";
+                String sql = "{call addrezervare (?, ?, ?, ?, ?, ?, ?, ?)}";
 
                 statement = connection.prepareCall(sql);
                 int idRezervare = (int)(System.currentTimeMillis() % 100000);
@@ -299,6 +302,7 @@ public class RezervareController {
                 //is paid....trebuie modificata
                 statement.setString(6, "0");
                 statement.setInt(7, cursaID);
+                statement.setInt(8, PRET_BILET*tickets.size());
 
 
                 statement.execute();
@@ -307,9 +311,11 @@ public class RezervareController {
                 statement.close();
 
                 //adaug si biletele...
-                addBilete(tickets, idRezervare, response);
+                int nrBileteReduse = addBilete(tickets, idRezervare, response) ;
 
+                double suma = (double)(nrBileteReduse * PRET_BILET * 0.5 + (((JSONArray)tickets.get(0)).size()-nrBileteReduse)*PRET_BILET);
 
+                updateRezervare(idRezervare, suma);
             } catch (SQLException se) {
                 se.printStackTrace();
             } catch (Exception e) {
@@ -325,11 +331,38 @@ public class RezervareController {
             }
         }
 
+        private void updateRezervare(int rezervareid, double suma){
+            Connection connection = DataBaseConnector.getInstance().getConnection();
+            CallableStatement statement = null;
 
-        private void addBilete(JSONArray tickets, int rezervareId, HttpServletResponse response) {
+            try {
+                String sql = "{call updateSuma (?, ?)}";
+                statement = connection.prepareCall(sql);
+
+                statement.setInt(1, rezervareid);
+                statement.setDouble(2, suma);
+                statement.execute();
+
+                statement.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } catch (Exception e) {
+                // Handle errors for Class.forName
+                e.printStackTrace();
+            } finally {
+                // finally block used to close resources
+                try {
+                    if (statement != null)
+                        statement.close();
+                } catch (SQLException se2) {
+                }
+            }
+        }
+
+        private int addBilete(JSONArray tickets, int rezervareId, HttpServletResponse response) {
             
             JSONArray jsonArray = (JSONArray) (tickets.get(0));
-
+            int nrReduse = 0;
             for( int i = 0; i < tickets.size(); i++) {
                 JSONObject object = ((JSONObject)jsonArray.get(i));
                 String nume = object.getAsString("nume");
@@ -341,6 +374,7 @@ public class RezervareController {
 
                 try {
                     reducere = (((boolean)object.get("reducere")) == true)?1:0;
+                    nrReduse++;
                 } catch (Exception e){
                     reducere = 0;
                 }
@@ -382,6 +416,7 @@ public class RezervareController {
                     }
                 }
             }
-        }
 
+            return nrReduse;
+        }
 }

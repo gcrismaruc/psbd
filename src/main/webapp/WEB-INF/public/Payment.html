@@ -83,7 +83,7 @@
                     <div class="col-md-12" ng-repeat="booking in bookingList">
                         <div class="col-md-12">
                             <div class="col-md-9">
-                                {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri).
+                                {{booking.oras_plecare}} - {{booking.oras_sosire}}, {{booking.data_plecare}}, {{booking.nrLocuri}} loc(uri), suma {{booking.suma}} lei.
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-warning payBtn" ng-click="doPay(booking.id)"><span class="glyphicon glyphicon-exclamation-sign">Plateste</span></button>

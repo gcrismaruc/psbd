@@ -59,7 +59,7 @@ public class CancelBookingController {
                 json.put("oras_sosire", result.getString("oras_sosrire"));
                 json.put("nrLocuri", result.getString("nr_locuri"));
                 json.put("data_plecare", result.getString("d_plecare"));
-
+                json.put("suma", result.getString("sumatotala"));
                 System.out.println(json);
                 list.add(json);
             }
